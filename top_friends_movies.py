@@ -306,6 +306,13 @@ def results(unique_movies, rating_nr=None):
         # the list is filterd. Movies with less than rating_nr votes are omitted
         # the list is sorted from the highes to lowest average, if equal it is sorted for the most votes
         output = [item for item in unique_movies if item[1] >= rating_nr]
+        
+        def bayes(R, v, m, C):
+            return ((v / (v+m)) * R + (m / (v+m)) * C)
+        
+        for i in output:
+            i[0] = bayes(i[0], i[1], rating_nr, 8.0)
+
         output_s = sorted(output,
                           key=lambda output: (output[0], output[1]),
                           reverse=True)
@@ -317,7 +324,7 @@ def results(unique_movies, rating_nr=None):
         print("Avg, Nr V, Titel, Individ Votes")
         for i in range(min(out_len, 15)):
             print(
-                output_s[i][0],
+                round(output_s[i][0], 2),
                 "\t",
                 output_s[i][1],
                 "\t",
