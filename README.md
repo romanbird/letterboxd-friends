@@ -1,4 +1,4 @@
-# Letterboxd-top-friend-movies
+# letterboxd-friends: Generate a top-chart based on your friends' ratings.
 
 Find the movies, with the highest average rating from your Letterboxd friends.
 
